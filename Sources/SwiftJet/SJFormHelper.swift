@@ -92,6 +92,9 @@ public class SJFormHelper {
         _ fieldViews: [UIView]?, _ index: Int, _ field: UITextField,
         _ state: UIView.State, message: String = String()) {
         guard let target = self.target else { return }
+        messageLabel.removeAllConstraints()
+        messageLabel.removeFromSuperview()
+        target.view.addSubview(messageLabel)
         if let fieldViews = fieldViews {
             fieldViews[index].setLayoutDisplay(target, state, message, messageLabel: messageLabel)
         } else {

@@ -124,6 +124,28 @@ public extension UIView {
             centerYAnchor.constraint(equalTo: yAxisView.centerYAnchor, constant: yConst).isActive = true
         }
     }
+    
+    public func removeAllConstraints() {
+        var _superview = self.superview
+
+        while let superview = _superview {
+            for constraint in superview.constraints {
+
+                if let first = constraint.firstItem as? UIView, first == self {
+                    superview.removeConstraint(constraint)
+                }
+
+                if let second = constraint.secondItem as? UIView, second == self {
+                    superview.removeConstraint(constraint)
+                }
+            }
+
+            _superview = superview.superview
+        }
+
+        self.removeConstraints(self.constraints)
+        self.translatesAutoresizingMaskIntoConstraints = true
+    }
 
 }
 
@@ -196,12 +218,17 @@ public extension UIView {
     func setLayoutDisplay(_ target: UIViewController, _ state: State, _ message: String, messageLabel: UILabel) {
         layer.borderWidth = 2
         layer.borderColor = state == .error ? UIColor.red.cgColor : UIColor.clear.cgColor
-        messageLabel.text = message
-        messageLabel.anchor(
-            top: bottomAnchor, leading: leadingAnchor,
-            trailing: trailingAnchor, padding: .init(12, 4))
+        
+        if state == .error {
+            messageLabel.text = message
+            messageLabel.anchor(
+                top: bottomAnchor, leading: leadingAnchor,
+                trailing: trailingAnchor, padding: .init(8, 4))
+        }
         messageLabel.isHidden = state == .error ? false : true
     }
 }
+
+
 
 #endif
