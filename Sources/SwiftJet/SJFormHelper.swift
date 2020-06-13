@@ -80,11 +80,13 @@ public class SJFormHelper {
         }
     }
     
-    fileprivate func setLayoutDisplay(_ fieldViews: [UIView]?, _ index: Int, _ field: UITextField, _ state: UIView.State) {
+    fileprivate func setLayoutDisplay(
+        _ fieldViews: [UIView]?, _ index: Int, _ field: UITextField,
+        _ state: UIView.State, message: String = String()) {
         if let fieldViews = fieldViews {
-            fieldViews[index].setLayoutDisplay(state)
+            fieldViews[index].setLayoutDisplay(state,message: message)
         } else {
-            field.setLayoutDisplay(state)
+            field.setLayoutDisplay(state, message: message)
         }
     }
     
@@ -108,8 +110,8 @@ public class SJFormHelper {
                     if !text.contains(val) {
                         target.presentAlert(
                             title: Title.TextField.invalid.rawValue,
-                            message: "Field must contain \(val)")
-                        setLayoutDisplay(fieldViews, index, field, .error)
+                            message: "Value must contain \(val)")
+                        setLayoutDisplay(fieldViews, index, field, .error, message: "Value must contain \(val)")
                         return false
                     }
                     
@@ -117,16 +119,16 @@ public class SJFormHelper {
                     if text.count <= val {
                         target.presentAlert(
                             title: Title.TextField.invalid.rawValue,
-                            message: "Field must be greater than \(val) characters")
-                        setLayoutDisplay(fieldViews, index, field, .error)
+                            message: "Value must be greater than \(val) characters")
+                        setLayoutDisplay(fieldViews, index, field, .error, message: "Value must be greater than \(val) characters")
                         return false
                     }
                 case .lessThan(let val):
                     if text.count >= val {
                         target.presentAlert(
                             title: Title.TextField.invalid.rawValue,
-                            message: "Field must be less than \(val) characters")
-                        setLayoutDisplay(fieldViews, index, field, .error)
+                            message: "Value must be less than \(val) characters")
+                        setLayoutDisplay(fieldViews, index, field, .error, message: "Value must be less than \(val) characters")
                         return false
                     }
                 }
