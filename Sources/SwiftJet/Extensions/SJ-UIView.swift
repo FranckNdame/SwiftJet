@@ -201,7 +201,7 @@ public extension UIView {
         messageLabel.textColor = .red
         messageLabel.text = message
         messageLabel.anchor(
-            superView: target, top: bottomAnchor, leading: leadingAnchor,
+            superView: target.view, top: bottomAnchor, leading: leadingAnchor,
             trailing: trailingAnchor, padding: .init(8))
         messageLabel.isHidden = state == .error ? false : true
     }
