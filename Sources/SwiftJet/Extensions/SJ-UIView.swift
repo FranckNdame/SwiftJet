@@ -88,7 +88,7 @@ public extension UIView {
     }
     
     @available(iOS 9.0, *)
-    open func centerInSuperview(superView: UIView? = nil, size: CGSize = .zero, vOffset:CGFloat = 0, hOffset:CGFloat = 0) {
+    func centerInSuperview(superView: UIView? = nil, size: CGSize = .zero, vOffset:CGFloat = 0, hOffset:CGFloat = 0) {
         if let superView = superView {
             superView.addSubview(self)
         }
