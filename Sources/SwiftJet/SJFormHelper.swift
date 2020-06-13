@@ -96,9 +96,9 @@ public class SJFormHelper {
         messageLabel.removeFromSuperview()
         target.view.addSubview(messageLabel)
         if let fieldViews = fieldViews {
-            fieldViews[index].setLayoutDisplay(target, state, message, messageLabel: messageLabel)
+            fieldViews[index].setLayoutDisplay(target, state, message, messageLabel: &messageLabel)
         } else {
-            field.setLayoutDisplay(target, state, message, messageLabel: messageLabel)
+            field.setLayoutDisplay(target, state, message, messageLabel: &messageLabel)
         }
     }
     

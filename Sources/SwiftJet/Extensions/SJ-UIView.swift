@@ -125,7 +125,7 @@ public extension UIView {
         }
     }
     
-    public func removeAllConstraints() {
+    func removeAllConstraints() {
         var _superview = self.superview
 
         while let superview = _superview {
@@ -215,7 +215,7 @@ public extension UIView {
 
 public extension UIView {
     enum State { case valid, error }
-    func setLayoutDisplay(_ target: UIViewController, _ state: State, _ message: String, messageLabel: UILabel) {
+    func setLayoutDisplay(_ target: UIViewController, _ state: State, _ message: String, messageLabel: inout UILabel) {
         layer.borderWidth = 2
         layer.borderColor = state == .error ? UIColor.red.cgColor : UIColor.clear.cgColor
         
