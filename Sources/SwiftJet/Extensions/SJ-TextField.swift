@@ -8,7 +8,6 @@
 import UIKit
 
 public extension UITextField {
-    enum State { case valid, error }
     
     @IBInspectable var padding: CGFloat {
         get {
@@ -16,11 +15,6 @@ public extension UITextField {
         } set {
             setPadding(newValue)
         }
-    }
-    
-    func setLayoutDisplay(_ state: State) {
-        layer.borderWidth = 2
-        layer.borderColor = state == .error ? UIColor.red.cgColor : UIColor.clear.cgColor
     }
     
      func setPadding(_ amount: CGFloat) {

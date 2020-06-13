@@ -11,14 +11,18 @@ import UIKit
 
 public class SJFormHelper {
     
-    public enum Title {
+    private enum Title {
         enum Password: String {
             case isInvalid = "Invalid password"
             case noMatch = "Passwords do not match"
+            case invalid = "Field is invalid"
+        }
+        enum TextField: String {
+            case invalid = "Field is invalid"
         }
     }
 
-    public enum Message {
+    private enum Message {
         enum Password: String {
             case isInvalid = "Sorry, your password should be at least 6 characters long!"
             case noMatch = "Please make sure you passwords are identical"
@@ -34,7 +38,6 @@ public class SJFormHelper {
         case contains(String)
     }
     
-    public enum VerificationType { case name }
     var target: UIViewController?
     
     public init(target: UIViewController) {
@@ -77,44 +80,53 @@ public class SJFormHelper {
         }
     }
     
+    fileprivate func setLayoutDisplay(_ fieldViews: [UIView]?, _ index: Int, _ field: UITextField) {
+        if let fieldViews = fieldViews {
+            fieldViews[index].setLayoutDisplay(.error)
+        } else {
+            field.setLayoutDisplay(.error)
+        }
+    }
+    
     public func fieldsAreValid(
         _ fields: [UITextField],
         conditions: [SJCondition] = [
         SJCondition.greaterThan(0),
         SJCondition.lessThan(50)
-        ]) -> Bool {
+        ],
+        fieldViews: [UIView]? = nil
+    ) -> Bool {
         guard let target = self.target else { return false }
         for field in fields {
-            let placeholder = field.placeholder.safeunwrap(withDefault: "Field")
             guard let text = field.text else {
                 print(Message.TextField.nilValue.rawValue)
                 return false
             }
-            for condition in conditions {
+            for (index, condition) in conditions.enumerated() {
                 switch condition {
                 case .contains(let val):
                     if !text.contains(val) {
                         target.presentAlert(
-                            title: placeholder + " is invalid",
-                            message: "\(placeholder) must contain \(val)")
-                        field.setLayoutDisplay(.error)
+                            title: Title.TextField.invalid.rawValue,
+                            message: "Field must contain \(val)")
+                        setLayoutDisplay(fieldViews, index, field)
                         return false
                     }
                     
                 case .greaterThan(let val):
                     if text.count <= val {
                         target.presentAlert(
-                            title: placeholder + " is invalid",
-                            message: "\(placeholder) must be greater than \(val) characters")
-                        field.setLayoutDisplay(.error)
+                            title: Title.TextField.invalid.rawValue,
+                            message: "Field must be greater than \(val) characters")
+                        setLayoutDisplay(fieldViews, index, field)
                         return false
                     }
                 case .lessThan(let val):
                     if text.count >= val {
                         target.presentAlert(
-                            title: placeholder + " is invalid",
-                            message: "\(placeholder) must be less than \(val) characters")
-                        field.setLayoutDisplay(.error)
+                            title: Title.TextField.invalid.rawValue,
+                            message: "Field must be less than \(val) characters")
+                        setLayoutDisplay(fieldViews, index, field)
                         return false
                     }
                 }
