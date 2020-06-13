@@ -193,14 +193,15 @@ public extension UIView {
 
 public extension UIView {
     enum State { case valid, error }
-    func setLayoutDisplay(_ state: State, message: String, font: UIFont = UIFont.systemFont(ofSize: 13)) {
+    func setLayoutDisplay(_ target: UIViewController, _ state: State, _ message: String, font: UIFont = UIFont.systemFont(ofSize: 13)) {
         layer.borderWidth = 2
         layer.borderColor = state == .error ? UIColor.red.cgColor : UIColor.clear.cgColor
         let messageLabel = UILabel()
         messageLabel.font = font
         messageLabel.textColor = .red
+        messageLabel.text = message
         messageLabel.anchor(
-            superView: self, top: bottomAnchor, leading: leadingAnchor,
+            superView: target, top: bottomAnchor, leading: leadingAnchor,
             trailing: trailingAnchor, padding: .init(8))
         messageLabel.isHidden = state == .error ? false : true
     }

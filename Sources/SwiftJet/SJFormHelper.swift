@@ -83,10 +83,11 @@ public class SJFormHelper {
     fileprivate func setLayoutDisplay(
         _ fieldViews: [UIView]?, _ index: Int, _ field: UITextField,
         _ state: UIView.State, message: String = String()) {
+        guard let target = self.target else { return }
         if let fieldViews = fieldViews {
-            fieldViews[index].setLayoutDisplay(state,message: message)
+            fieldViews[index].setLayoutDisplay(target, state, message)
         } else {
-            field.setLayoutDisplay(state, message: message)
+            field.setLayoutDisplay(target, state, message)
         }
     }
     
@@ -108,27 +109,30 @@ public class SJFormHelper {
                 switch condition {
                 case .contains(let val):
                     if !text.contains(val) {
+                        let message = "Entry must contain the '\(val)' character"
                         target.presentAlert(
                             title: Title.TextField.invalid.rawValue,
-                            message: "Value must contain \(val)")
-                        setLayoutDisplay(fieldViews, index, field, .error, message: "Value must contain \(val)")
+                            message: message)
+                        setLayoutDisplay(fieldViews, index, field, .error, message: message)
                         return false
                     }
                     
                 case .greaterThan(let val):
                     if text.count <= val {
+                        let message = "Value must be greater than \(val) characters"
                         target.presentAlert(
                             title: Title.TextField.invalid.rawValue,
-                            message: "Value must be greater than \(val) characters")
-                        setLayoutDisplay(fieldViews, index, field, .error, message: "Value must be greater than \(val) characters")
+                            message: message)
+                        setLayoutDisplay(fieldViews, index, field, .error, message: message)
                         return false
                     }
                 case .lessThan(let val):
                     if text.count >= val {
+                        let message = "Value must be less than \(val) characters"
                         target.presentAlert(
                             title: Title.TextField.invalid.rawValue,
-                            message: "Value must be less than \(val) characters")
-                        setLayoutDisplay(fieldViews, index, field, .error, message: "Value must be less than \(val) characters")
+                            message: message)
+                        setLayoutDisplay(fieldViews, index, field, .error, message: message)
                         return false
                     }
                 }
