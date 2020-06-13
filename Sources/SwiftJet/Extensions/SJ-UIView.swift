@@ -218,14 +218,14 @@ public extension UIView {
     func setLayoutDisplay(_ target: UIViewController, _ state: State, _ message: String, messageLabel: inout UILabel) {
         layer.borderWidth = 2
         layer.borderColor = state == .error ? UIColor.red.cgColor : UIColor.clear.cgColor
-        
+        messageLabel.isHidden = state == .error ? false : true
         if state == .error {
             messageLabel.text = message
             messageLabel.anchor(
                 top: bottomAnchor, leading: leadingAnchor,
                 trailing: trailingAnchor, padding: .init(8, 4))
         }
-        messageLabel.isHidden = state == .error ? false : true
+        
     }
 }
 

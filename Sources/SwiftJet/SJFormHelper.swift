@@ -11,9 +11,9 @@ import UIKit
 
 public class SJFormHelper {
     
-    lazy var messageLabel: UILabel = {
+    var messageLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 11)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .red
         return label
     }()
@@ -93,7 +93,9 @@ public class SJFormHelper {
         _ state: UIView.State, message: String = String()) {
         guard let target = self.target else { return }
         messageLabel.removeAllConstraints()
+        messageLabel.isHidden = true
         messageLabel.removeFromSuperview()
+        messageLabel.text = ""
         target.view.addSubview(messageLabel)
         if let fieldViews = fieldViews {
             fieldViews[index].setLayoutDisplay(target, state, message, messageLabel: &messageLabel)
