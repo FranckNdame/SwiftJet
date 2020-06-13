@@ -11,6 +11,13 @@ import UIKit
 
 public class SJFormHelper {
     
+    lazy var messageLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 11)
+        label.textColor = .red
+        return label
+    }()
+    
     private enum Title {
         enum Password: String {
             case isInvalid = "Invalid password"
@@ -42,6 +49,7 @@ public class SJFormHelper {
     
     public init(target: UIViewController) {
         self.target = target
+        target.view.addSubview(messageLabel)
     }
     
     public func isOverEighteen(dob: Date) -> Bool {
@@ -85,9 +93,9 @@ public class SJFormHelper {
         _ state: UIView.State, message: String = String()) {
         guard let target = self.target else { return }
         if let fieldViews = fieldViews {
-            fieldViews[index].setLayoutDisplay(target, state, message)
+            fieldViews[index].setLayoutDisplay(target, state, message, messageLabel: messageLabel)
         } else {
-            field.setLayoutDisplay(target, state, message)
+            field.setLayoutDisplay(target, state, message, messageLabel: messageLabel)
         }
     }
     
