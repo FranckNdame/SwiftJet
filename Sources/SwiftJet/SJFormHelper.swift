@@ -97,12 +97,12 @@ public class SJFormHelper {
         fieldViews: [UIView]? = nil
     ) -> Bool {
         guard let target = self.target else { return false }
-        for field in fields {
+        for (index, field) in fields.enumerated() {
             guard let text = field.text else {
                 print(Message.TextField.nilValue.rawValue)
                 return false
             }
-            for (index, condition) in conditions.enumerated() {
+            for condition in conditions {
                 switch condition {
                 case .contains(let val):
                     if !text.contains(val) {
