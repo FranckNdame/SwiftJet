@@ -80,11 +80,11 @@ public class SJFormHelper {
         }
     }
     
-    fileprivate func setLayoutDisplay(_ fieldViews: [UIView]?, _ index: Int, _ field: UITextField) {
+    fileprivate func setLayoutDisplay(_ fieldViews: [UIView]?, _ index: Int, _ field: UITextField, _ state: UIView.State) {
         if let fieldViews = fieldViews {
-            fieldViews[index].setLayoutDisplay(.error)
+            fieldViews[index].setLayoutDisplay(state)
         } else {
-            field.setLayoutDisplay(.error)
+            field.setLayoutDisplay(state)
         }
     }
     
@@ -109,7 +109,7 @@ public class SJFormHelper {
                         target.presentAlert(
                             title: Title.TextField.invalid.rawValue,
                             message: "Field must contain \(val)")
-                        setLayoutDisplay(fieldViews, index, field)
+                        setLayoutDisplay(fieldViews, index, field, .error)
                         return false
                     }
                     
@@ -118,7 +118,7 @@ public class SJFormHelper {
                         target.presentAlert(
                             title: Title.TextField.invalid.rawValue,
                             message: "Field must be greater than \(val) characters")
-                        setLayoutDisplay(fieldViews, index, field)
+                        setLayoutDisplay(fieldViews, index, field, .error)
                         return false
                     }
                 case .lessThan(let val):
@@ -126,12 +126,12 @@ public class SJFormHelper {
                         target.presentAlert(
                             title: Title.TextField.invalid.rawValue,
                             message: "Field must be less than \(val) characters")
-                        setLayoutDisplay(fieldViews, index, field)
+                        setLayoutDisplay(fieldViews, index, field, .error)
                         return false
                     }
                 }
             }
-            field.setLayoutDisplay(.valid)
+            setLayoutDisplay(fieldViews, index, field, .valid)
         }
         return true
     }
