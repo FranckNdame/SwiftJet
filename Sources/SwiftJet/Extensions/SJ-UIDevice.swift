@@ -10,7 +10,7 @@ import UIKit
 // MARK: - STNDevice
 
 public typealias SJDevice = UIDevice
-extension SJDevice {
+public extension SJDevice {
     // MARK: - Class Methods
     class var screenSize: SJSize {
         let bounds = UIScreen.main.nativeBounds

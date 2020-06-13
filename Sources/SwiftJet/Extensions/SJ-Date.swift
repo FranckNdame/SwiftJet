@@ -6,7 +6,7 @@
 //
 import Foundation
 
-extension Date {
+public extension Date {
     func timeAgoDisplay() -> String {
         let secondsAgo = Int(Date().timeIntervalSince(self))
         
@@ -43,7 +43,7 @@ extension Date {
     }
 }
 
-extension TimeInterval {
+public extension TimeInterval {
     // builds string in app's labels format 00:00.0
     func stringFormatted() -> String {
 
@@ -54,7 +54,7 @@ extension TimeInterval {
     }
 }
 
-extension String {
+public extension String {
     var toDate: Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"

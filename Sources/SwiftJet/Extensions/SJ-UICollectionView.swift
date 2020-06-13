@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UICollectionView {
+public extension UICollectionView {
     /// Registers the cell into the collectionView using a reuseIdentifier coming from the `Reusable` protocol
     func register(cellType type: UICollectionViewCell.Type) {
         register(type, forCellWithReuseIdentifier: type.reuseIdentifier)

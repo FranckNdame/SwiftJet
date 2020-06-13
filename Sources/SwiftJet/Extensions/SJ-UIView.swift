@@ -88,17 +88,17 @@ public extension UIView {
     }
     
     @available(iOS 9.0, *)
-    func centerInSuperview(superView: UIView? = nil, size: CGSize = .zero) {
+    open func centerInSuperview(superView: UIView? = nil, size: CGSize = .zero, vOffset:CGFloat = 0, hOffset:CGFloat = 0) {
         if let superView = superView {
             superView.addSubview(self)
         }
         translatesAutoresizingMaskIntoConstraints = false
         if let superviewCenterXAnchor = superview?.centerXAnchor {
-            centerXAnchor.constraint(equalTo: superviewCenterXAnchor).isActive = true
+            centerXAnchor.constraint(equalTo: superviewCenterXAnchor, constant: hOffset).isActive = true
         }
         
         if let superviewCenterYAnchor = superview?.centerYAnchor {
-            centerYAnchor.constraint(equalTo: superviewCenterYAnchor).isActive = true
+            centerYAnchor.constraint(equalTo: superviewCenterYAnchor, constant: vOffset).isActive = true
         }
         
         if size.width != 0 {
@@ -112,16 +112,16 @@ public extension UIView {
     
     @available(iOS 9.0, *)
     func centerRelativeTo(
-        xAxis: NSLayoutXAxisAnchor? = nil, xConst: CGFloat = 0.0,
-        yAxis: NSLayoutYAxisAnchor? = nil, yConst: CGFloat = 0.0)
+        xAxisView: UIView? = nil, xConst: CGFloat = 0.0,
+        yAxisView: UIView? = nil, yConst: CGFloat = 0.0)
     {
         translatesAutoresizingMaskIntoConstraints = false
-        if let xAxis = xAxis {
-            centerXAnchor.constraint(equalTo: xAxis, constant: xConst).isActive = true
+        if let xAxisView = xAxisView {
+            centerXAnchor.constraint(equalTo: xAxisView.centerXAnchor, constant: xConst).isActive = true
         }
         
-        if let yAxis = yAxis {
-            centerYAnchor.constraint(equalTo: yAxis, constant: yConst).isActive = true
+        if let yAxisView = yAxisView {
+            centerYAnchor.constraint(equalTo: yAxisView.centerYAnchor, constant: yConst).isActive = true
         }
     }
 
@@ -149,7 +149,7 @@ public extension UIView {
 }
 
 /// Shadow IB extensions
-extension UIView {
+public extension UIView {
     @IBInspectable var cornerRadius: Double {
         get {
             return Double(self.layer.cornerRadius)

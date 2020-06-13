@@ -8,7 +8,7 @@
 import UIKit
 
 /// A collection of common constants for margins and sizes
-enum SJMargin {
+public enum SJMargin {
     // MARK: - Components
     enum Components {
         // MARK: - Padding

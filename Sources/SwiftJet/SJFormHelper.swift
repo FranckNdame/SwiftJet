@@ -7,30 +7,32 @@
 
 import UIKit
 
-private enum Title {
-    enum Password: String {
-        case isInvalid = "Invalid password"
-        case noMatch = "Passwords do not match"
-    }
-}
 
-private enum Message {
-    enum Password: String {
-        case isInvalid = "Sorry, your password should be at least 6 characters long!"
-        case noMatch = "Please make sure you passwords are identical"
-    }
-    enum TextField: String {
-        case nilValue = "[Nil Pointer]: Textfield was not initialized"
-    }
-}
 
-enum SJCondition {
-    case lessThan(Int)
-    case greaterThan(Int)
-    case contains(String)
-}
+public class SJFormHelper {
+    
+    public enum Title {
+        enum Password: String {
+            case isInvalid = "Invalid password"
+            case noMatch = "Passwords do not match"
+        }
+    }
 
-class SJFormHelper {
+    public enum Message {
+        enum Password: String {
+            case isInvalid = "Sorry, your password should be at least 6 characters long!"
+            case noMatch = "Please make sure you passwords are identical"
+        }
+        enum TextField: String {
+            case nilValue = "[Nil Pointer]: Textfield was not initialized"
+        }
+    }
+
+    public enum SJCondition {
+        case lessThan(Int)
+        case greaterThan(Int)
+        case contains(String)
+    }
     
     enum VerificationType { case name }
     var target: UIViewController?

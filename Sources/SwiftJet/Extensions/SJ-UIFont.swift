@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIFont {
+public extension UIFont {
     
     /// Makes a font of dynamic size corresponding to textStyle
     /// These fonts don't change size live. Easier to develop for non-dynamic interfaces (for now)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Optional where Wrapped == String {
+public extension Optional where Wrapped == String {
     var safeunwrap: String {
         return self ?? ""
     }
@@ -17,25 +17,25 @@ extension Optional where Wrapped == String {
     }
 }
 
-extension Optional where Wrapped == Int {
+public extension Optional where Wrapped == Int {
     var safeunwrap: Int {
         return self ?? 0
     }
 }
 
-extension Optional where Wrapped == Bool {
+public extension Optional where Wrapped == Bool {
     var safeunwrap: Bool {
         return self ?? false
     }
 }
 
-extension Optional where Wrapped == Date {
+public extension Optional where Wrapped == Date {
     var safeunwrap: Date {
         return self ?? Date()
     }
 }
 
-extension Optional where Wrapped == [Any] {
+public extension Optional where Wrapped == [Any] {
     var safeunwrap: [Any] {
         return self ?? []
     }

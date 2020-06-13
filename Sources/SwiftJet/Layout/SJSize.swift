@@ -7,8 +7,8 @@
 
 import UIKit
 
-struct SJSize {
-    enum SizeType {
+public struct SJSize {
+    public enum SizeType {
         case unknown, all, small, medium, large, xlarge, x
         case iPadSmall, iPadMedium, iPadLarge
     }
