@@ -13,11 +13,11 @@ public struct AnchoredConstraints {
 }
 
 /// Anchor extensions
-extension UIView {
+public extension UIView {
     
     @available(iOS 9.0, *)
     @discardableResult
-    public func anchor(superView: UIView? = nil,
+    func anchor(superView: UIView? = nil,
                        top: NSLayoutYAxisAnchor? = nil,
                        leading: NSLayoutXAxisAnchor? = nil,
                        bottom: NSLayoutYAxisAnchor? = nil,
@@ -65,7 +65,7 @@ extension UIView {
     }
     
     @available(iOS 9.0, *)
-    public func fillSuperview(superView: UIView? = nil, padding: UIEdgeInsets = .zero) {
+    func fillSuperview(superView: UIView? = nil, padding: UIEdgeInsets = .zero) {
         if let superView = superView {
             superView.addSubview(self)
         }
@@ -88,7 +88,7 @@ extension UIView {
     }
     
     @available(iOS 9.0, *)
-    public func centerInSuperview(superView: UIView? = nil, size: CGSize = .zero) {
+    func centerInSuperview(superView: UIView? = nil, size: CGSize = .zero) {
         if let superView = superView {
             superView.addSubview(self)
         }
@@ -111,7 +111,7 @@ extension UIView {
     }
     
     @available(iOS 9.0, *)
-    public func centerRelativeTo(
+    func centerRelativeTo(
         xAxis: NSLayoutXAxisAnchor? = nil, xConst: CGFloat = 0.0,
         yAxis: NSLayoutYAxisAnchor? = nil, yConst: CGFloat = 0.0)
     {
@@ -127,7 +127,7 @@ extension UIView {
 
 }
 
-extension UIEdgeInsets {
+public extension UIEdgeInsets {
      init(_ top: CGFloat = 0, _ left: CGFloat = 0, _ bottom: CGFloat = 0, _ right: CGFloat = 0) {
         self.init(top: top, left: left, bottom: bottom, right: right)
     }
@@ -136,8 +136,8 @@ extension UIEdgeInsets {
 
 
 /// Shadow extensions
-extension UIView {
-    public func jetShadow(
+public extension UIView {
+    func addShadow(
         radius: CGFloat = 16.0, opacity: Float = 0.1,
         Yoffset: CGFloat = 7, color: UIColor = .black
     ) {
