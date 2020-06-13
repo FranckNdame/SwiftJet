@@ -39,7 +39,7 @@ class SJFormHelper {
         self.target = target
     }
     
-    public static func isOverEighteen(dob: Date) -> Bool {
+    public func isOverEighteen(dob: Date) -> Bool {
         let currentDate = Date()
         let calendar = Calendar.current
         let ageComponents = calendar.dateComponents([.year], from: dob, to: currentDate)
