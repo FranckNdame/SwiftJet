@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
     
     func presentAlert(title: String, message: String) {
         let cancel = UIAlertAction(title: "Ok", style: .cancel, handler: nil)

@@ -34,10 +34,10 @@ public class SJFormHelper {
         case contains(String)
     }
     
-    enum VerificationType { case name }
+    public enum VerificationType { case name }
     var target: UIViewController?
     
-    init(target: UIViewController) {
+    public init(target: UIViewController) {
         self.target = target
     }
     
@@ -49,7 +49,7 @@ public class SJFormHelper {
         return age >= 18
     }
     
-    internal func passwordIsValid(_ passwordString:String) -> Bool {
+    public func passwordIsValid(_ passwordString:String) -> Bool {
         guard let target = self.target else { return false  }
         if passwordString.count >= 6  { return true }
         else {
