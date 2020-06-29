@@ -213,11 +213,13 @@ public extension UIView {
 //    }
 //}
 
+
 public extension UIView {
     enum State { case valid, error }
-    func setLayoutDisplay(_ target: UIViewController, _ state: State, _ message: String, messageLabel: inout UILabel) {
+    
+    func setLayoutDisplay(_ target: UIViewController, _ state: State, _ message: String, messageLabel: inout UILabel, defaultBorderColor: UIColor) {
         layer.borderWidth = 2
-        layer.borderColor = state == .error ? UIColor.red.cgColor : UIColor.clear.cgColor
+        layer.borderColor = state == .error ? UIColor.red.cgColor : defaultBorderColor.cgColor
         messageLabel.isHidden = state == .error ? false : true
         if state == .error {
             messageLabel.text = message

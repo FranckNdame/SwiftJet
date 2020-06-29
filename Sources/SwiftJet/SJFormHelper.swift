@@ -45,11 +45,13 @@ public class SJFormHelper {
         case contains(String)
     }
     
-    var target: UIViewController?
+    weak var target: UIViewController?
+    var defaultBorderColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     
-    public init(target: UIViewController) {
+    public init(target: UIViewController, defaultBorderColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)) {
         self.target = target
         target.view.addSubview(messageLabel)
+        self.defaultBorderColor = defaultBorderColor
     }
     
     public func isOverEighteen(dob: Date) -> Bool {
@@ -98,9 +100,9 @@ public class SJFormHelper {
         messageLabel.text = ""
         target.view.addSubview(messageLabel)
         if let fieldViews = fieldViews {
-            fieldViews[index].setLayoutDisplay(target, state, message, messageLabel: &messageLabel)
+            fieldViews[index].setLayoutDisplay(target, state, message, messageLabel: &messageLabel, defaultBorderColor: self.defaultBorderColor)
         } else {
-            field.setLayoutDisplay(target, state, message, messageLabel: &messageLabel)
+            field.setLayoutDisplay(target, state, message, messageLabel: &messageLabel, defaultBorderColor: self.defaultBorderColor)
         }
     }
     
